@@ -20,7 +20,7 @@
 
 ## 🎯 Présentation
 
-Cette calculatrice scientifique a été développée dans le cadre de ma formation **IBM JavaScript Fullstack Developer**. 
+Cette calculatrice scientifique a été développée dans le cadre de ma formation **Developpeur MERN**. 
 Le projet simule une calculatrice scientifique avec une interface réaliste et des fonctionnalités avancées.
 
 ### Objectifs de Formation
