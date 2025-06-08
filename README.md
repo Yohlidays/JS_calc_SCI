@@ -26,9 +26,6 @@ Le projet simule une calculatrice scientifique avec une interface réaliste et d
 ### Objectifs de Formation
 
 - Découverte, apprentissage progressif et solidification des compétences en HTML/CSS/JavaScript
-- 
-- 
-- Javascript : 
 
 ## 🚀 Technologies Utilisées
 
