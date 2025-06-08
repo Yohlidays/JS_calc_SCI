@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/JaySkills/calculator-project)
 [![License](https://img.shields.io/badge/license-Propriétaire-red.svg)](LICENSE)
 
-> **Portfolio - Projet 2** - Calculatrice responsive avec fonctions scientifiques
+> **Portfolio - Projet 1** - Calculatrice responsive avec fonctions scientifiques
 
 ## 📋 Table des Matières
 
@@ -21,21 +21,22 @@
 ## 🎯 Présentation
 
 Cette calculatrice scientifique a été développée dans le cadre de ma formation **Developpeur MERN**. 
-Le projet simule une calculatrice scientifique avec une interface réaliste et des fonctionnalités avancées.
+Le projet simule une calculatrice scientifique avec une interface réaliste et des fonctionnalités avancées, fin de cycle 1.
 
 ### Objectifs de Formation
 
-- Apprentissage du Javascript basique et renforcement des compétences CSS Grid/Flexbox
-- Développement d'une interface utilisateur responsive 
-- Gestion des événements et interactions utilisateur
+- Découverte, apprentissage progressif et solidification des compétences en HTML/CSS/JavaScript
+- 
+- 
+- Javascript : 
 
 ## 🚀 Technologies Utilisées
 
 ### Front-End
 
-- **HTML5** - Structure sémantique moderne
-- **CSS3** - Styles avancés avec Flexbox et Grid
-- **JavaScript ES6+** - Logique métier et interactions
+- **HTML5** - Structure sémantique moderne : balises sémentiques, attributs Aria, balises méta, preconnect/preload, script defer.
+- **CSS3** - Interface utilisateur responsive, stylisée, accessible : FlexBox, Grid, container, components, media-queries, keyframes
+- **JavaScript ES6+** - Logique métier et interactions : Variables, primitives, objets, tableaux, fonctions, boucles, conditions, asynchronicité, algorythmie, regex, gestion du DOM.
 
 ### Frameworks & Bibliothèques
 
@@ -91,13 +92,6 @@ Le projet simule une calculatrice scientifique avec une interface réaliste et d
 ## 🔄 Historique des Versions
 
 ### 📅 Version 1.0 - Mars 2025 (Commit Initial)
-
-**Fonctionnalités Implémentées dans le Premier Commit**
-
-#### Interface et Structure
-
-- **HTML basique**
-- **CSS intermédiaire** avec CSS Grid et Flexbox
 
 #### Fonctionnalités Calculatrice 
 
