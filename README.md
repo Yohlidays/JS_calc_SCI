@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/JaySkills/calculator-project)
 [![License](https://img.shields.io/badge/license-Propriétaire-red.svg)](LICENSE)
 
-> **Projet de Formation** - Calculatrice scientifique développée dans le cadre de ma formation JavaScript
+> **Portfolio - Projet 2** - Calculatrice responsive avec fonctions scientifiques
 
 ## 📋 Table des Matières
 
@@ -20,15 +20,14 @@
 
 ## 🎯 Présentation
 
-Cette calculatrice scientifique a été développée dans le cadre de ma formation **JavaScript Fullstack Developer** chez OpenClassrooms en partenariat avec IBM. Le projet simule une calculatrice scientifique avec une interface moderne et des fonctionnalités avancées.
+Cette calculatrice scientifique a été développée dans le cadre de ma formation **IBM JavaScript Fullstack Developer**. 
+Le projet simule une calculatrice scientifique avec une interface réaliste et des fonctionnalités avancées.
 
 ### Objectifs de Formation
 
-- Apprentissage des technologies web front-end (HTML5, CSS3, JavaScript)
-- Développement d'une interface utilisateur responsive
+- Apprentissage du Javascript basique et renforcement des compétences CSS Grid/Flexbox
+- Développement d'une interface utilisateur responsive 
 - Gestion des événements et interactions utilisateur
-- Application des bonnes pratiques d'accessibilité web
-- Optimisation sémantique et SEO
 
 ## 🚀 Technologies Utilisées
 
@@ -97,21 +96,18 @@ Cette calculatrice scientifique a été développée dans le cadre de ma formati
 
 #### Interface et Structure
 
-- **HTML sémantique** complet avec balises HTML5 (`main`, `article`, `section`, `header`)
+- **HTML basique**
+- **CSS intermédiaire** avec CSS Grid et Flexbox
 
-- **Design responsive** moderne avec CSS Grid et Flexbox
-
-#### Fonctionnalités Calculatrice Déjà Présentes
+#### Fonctionnalités Calculatrice 
 
 - **Opérations de base** : +, -, ×, ÷ avec priorité mathématique correcte (utilise `eval()`)
 - **Fonctions scientifiques** : sin, cos, tan, log, √, x², π, %
 - **Gestion des parenthèses** : fermeture automatique des parenthèses ouvertes
 - **Affichage multi-lignes** : 3 lignes d'historique + zone résultat séparée
 - **Fonction Ans** : réutilisation du dernier résultat calculé
-- **Gestion des décimales** : validation des points décimaux (un seul par nombre)
-- **Gestion d'erreurs** : division par zéro, expressions invalides → "Erreur"
 
-#### Fonctionnalités Avancées Déjà Fonctionnelles
+#### Fonctionnalités Avancées 
 
 - **Parenthèses automatiques** : `sin(30` → `sin(30)` au moment du calcul
 - **Historique des calculs** : système de défilement des 3 dernières opérations
@@ -119,15 +115,17 @@ Cette calculatrice scientifique a été développée dans le cadre de ma formati
 - **Opérateurs en début** : `+ 5` devient automatiquement `0 + 5`
 - **Formatage intelligent** : limitation à 12 caractères, notation scientifique si dépassement
 - **Réutilisation résultat** : bouton Ans récupère le dernier résultat affiché
-
+- **Gestion des décimales** : validation des points décimaux (un seul par nombre)
+- **Gestion d'erreurs** : division par zéro, expressions invalides → "Erreur"
+  
 ### 🚀 Version 2.0 - Juin 2025 (Améliorations Mineures)
 
 **Modifications Techniques Réellement Apportées**
 
-#### 🎨 Améliorations CSS
+#### 🎨 Refonte HTML & CSS
 
-- **Commentaires pédagogiques** : ajout de documentation complète en français
-- **Restructuration du code** : organisation en 14 sections commentées
+- **Restructuration du CSS** : organisation en 14 sections commentées
+- **Refonte de la structure HTML** pour une meilleure sémentique
 - **Attributs ARIA** pour l'accessibilité (aria-label, aria-live, role)
 - **Métadonnées SEO** et Open Graph intégrées
 
