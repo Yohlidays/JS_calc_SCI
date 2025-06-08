@@ -23,7 +23,10 @@ function shiftLines() {
 // Gestion des clics sur les boutons
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-        const buttonValue = button.textContent.trim();
+        // Amélioration : gestion des boutons avec spans et icônes
+        const buttonValue = button.dataset.value || 
+                           button.querySelector('.main')?.textContent?.trim() || 
+                           button.textContent.trim();
         console.log(`${buttonValue} clicked`);
 
         if (!isNaN(buttonValue)) {
@@ -131,18 +134,6 @@ buttons.forEach(button => {
                             result.textContent = resultValue.toString();
                         }
 
-// Conserve l'expression calculée brute dans `lines[2]`
-lines[2] = sanitizedExpression;
-
-// Ajoute un égal à la ligne active pour indiquer le calcul effectué
-lines[2] += '=';
-
-// Mets en gras la ligne 2 après le calcul pour indiquer que c'est ce calcul qui est affiché dans `result`
-displayLines[1].style.fontWeight = 'bold';
-
-// Déplace le contenu de la ligne active vers la ligne précédente
-shiftLines();
-
                         // Conserve l'expression calculée brute dans `lines[2]`
                         lines[2] = sanitizedExpression;
 
@@ -181,7 +172,7 @@ shiftLines();
 
                 case 'π':
                     // Ajoute la valeur de π à la ligne active
-                    lines[2] += Math.PI.toFixed(12); // Limite à 12 décimales pour éviter les erreurs d'affichage
+                    lines[2] += Math.PI.toFixed(8); // Limite à 8 décimales pour un affichage optimal
                     break;
 
                 default:
@@ -197,7 +188,7 @@ shiftLines();
 
         // Met à jour l'affichage des lignes
         displayLines.forEach((line, index) => {
-            line.value = lines[index];
+            line.textContent = lines[index];
         });
 
         console.log("Lines:", lines);

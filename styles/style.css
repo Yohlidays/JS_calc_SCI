@@ -1,183 +1,741 @@
-/* Global Styles */
+/* 
+===============================================================================
+                        CALCULATRICE SCIENTIFIQUE - STYLES CSS
+===============================================================================
+Ce fichier contient tous les styles pour la calculatrice scientifique.
+Organisation : Reset → Layout → Composants → Responsive → Accessibilité
+===============================================================================
+*/
+
+/* 
+===============================================================================
+                            1. RESET ET STYLES DE BASE
+===============================================================================
+*/
+
+/* Reset universel : supprime les marges/padding par défaut de tous les éléments */
+* {
+  margin: 0; /* Supprime toutes les marges externes */
+  padding: 0; /* Supprime tous les espaces internes */
+  box-sizing: border-box; /* Inclut padding et border dans la taille totale */
+}
+
+/* Styles de base pour html et body */
 html,
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%; /* Assure que le body prend toute la hauteur */
-  width: 100%; /* Assure que le body prend toute la largeur */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: auto; /* Ajoute des barres de défilement si nécessaire */
+  height: 100%; /* Prend toute la hauteur de l'écran */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  /* Dégradé de fond principal : du bleu-violet au violet */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
-input {
-  all: unset; /* Réinitialise tous les styles par défaut */
-  box-sizing: border-box; /* Assure une gestion correcte des dimensions */
+/* 
+===============================================================================
+                            2. CONTENEUR PRINCIPAL
+===============================================================================
+*/
+
+/* Conteneur principal qui centre la calculatrice à l'écran */
+.calculator-container {
+  min-height: 100vh; /* Hauteur minimale = hauteur de l'écran */
+  display: flex; /* Utilise Flexbox pour le centrage */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  padding: 20px; /* Espace autour pour éviter les bords */
+
+  /* Arrière-plan avec plusieurs dégradés radiaux superposés pour créer un effet de profondeur */
+  background: 
+    /* Premier cercle : bleu-violet en bas à gauche */ radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    /* Deuxième cercle : rose en haut à droite */
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 119, 198, 0.15) 0%,
+        transparent 50%
+      ),
+    /* Troisième cercle : bleu clair au centre */
+      radial-gradient(
+        circle at 40% 40%,
+        rgba(120, 219, 255, 0.1) 0%,
+        transparent 50%
+      );
 }
 
-/* Layout */
+/* 
+===============================================================================
+                            3. CORPS DE LA CALCULATRICE
+===============================================================================
+*/
 
-.body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
-  width: 100vw; /* Prend toute la largeur de la fenêtre */
-  min-width: 320px; /* Largeur minimale pour éviter les problèmes */
-  min-height: 480px; /* Hauteur minimale pour éviter les problèmes */
-  background-color: #789cca;
-  box-sizing: border-box;
-  padding: 10px; /* Ajoute un peu d'espace autour du contenu */
+/* Conteneur principal de la calculatrice */
+.calculator {
+  width: 420px; /* Largeur fixe optimale */
+  max-width: 95vw; /* Limite à 95% de la largeur d'écran sur mobile */
+
+  /* Dégradé de fond : simule un matériau métallique */
+  background: linear-gradient(145deg, #2c3e50, #34495e);
+  border-radius: 25px; /* Coins arrondis pour un look moderne */
+
+  /* Ombres multiples pour créer un effet de profondeur réaliste */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25),
+    /* Ombre principale portée */ 0 0 0 1px rgba(255, 255, 255, 0.05),
+    /* Bordure lumineuse subtile */ inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Reflet interne en haut */
+
+  padding: 25px; /* Espace interne généreux */
+  position: relative; /* Permet le positionnement des pseudo-éléments */
+  overflow: hidden; /* Cache les débordements */
 }
 
+/* Pseudo-élément pour créer un reflet lumineux en haut de la calculatrice */
+.calculator::before {
+  content: ""; /* Contenu vide requis pour les pseudo-éléments */
+  position: absolute; /* Positionnement absolu par rapport au parent */
+  top: 0; /* Collé en haut */
+  left: 0; /* Collé à gauche */
+  right: 0; /* Collé à droite */
+  height: 1px; /* Ligne très fine */
+
+  /* Dégradé horizontal : transparent → blanc → transparent */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+}
+
+/* 
+===============================================================================
+                            4. EN-TÊTE DE LA CALCULATRICE
+===============================================================================
+*/
+
+/* Conteneur de l'en-tête avec logo et indicateurs */
+.calculator-header {
+  display: flex; /* Flexbox pour aligner les éléments */
+  justify-content: space-between; /* Espace entre logo et indicateurs */
+  align-items: center; /* Alignement vertical centré */
+  margin-bottom: 20px; /* Espace en bas */
+  padding-bottom: 15px; /* Espace interne en bas */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Ligne de séparation subtile */
+}
+
+/* Titre principal de la marque */
+.brand h1 {
+  font-size: 1.8rem; /* Taille de police importante */
+  font-weight: 700; /* Poids de police gras */
+  color: #ecf0f1; /* Couleur blanc cassé */
+  margin-bottom: 2px; /* Petit espace en bas */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Ombre du texte pour la profondeur */
+}
+
+/* Symbole copyright dans le titre */
+.copyright {
+  font-size: 0.8rem; /* Plus petit que le titre */
+  opacity: 0.7; /* Légèrement transparent */
+}
+
+/* Texte du modèle de calculatrice */
+.model {
+  font-size: 0.9rem; /* Taille moyenne */
+  color: #bdc3c7; /* Gris clair */
+  font-weight: 400; /* Poids normal */
+}
+
+/* Badge de version */
+.version {
+  background: linear-gradient(45deg, #3498db, #2980b9); /* Dégradé bleu */
+  color: white; /* Texte blanc */
+  padding: 2px 6px; /* Espace interne compact */
+  border-radius: 8px; /* Coins arrondis */
+  font-size: 0.7rem; /* Petite taille */
+  font-weight: 600; /* Semi-gras */
+  margin-left: 8px; /* Espace à gauche */
+}
+
+/* Conteneur des indicateurs de statut */
+.status-indicators {
+  display: flex; /* Flexbox pour aligner les indicateurs */
+  gap: 10px; /* Espace entre les indicateurs */
+}
+
+/* Style de base pour chaque indicateur */
+.indicator {
+  width: 24px; /* Largeur fixe */
+  height: 24px; /* Hauteur fixe (cercle) */
+  border-radius: 50%; /* Forme circulaire */
+  background: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+  display: flex; /* Flexbox pour centrer l'icône */
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal */
+  color: #7f8c8d; /* Couleur grise par défaut */
+  font-size: 0.8rem; /* Petite taille d'icône */
+  transition: all 0.3s ease; /* Animation fluide pour les changements */
+}
+
+/* Indicateur actif (calculatrice allumée) */
+.indicator.active {
+  background: linear-gradient(45deg, #27ae60, #2ecc71); /* Dégradé vert */
+  color: white; /* Icône blanche */
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.4); /* Lueur verte */
+}
+
+/* 
+===============================================================================
+                            5. ÉCRAN DE LA CALCULATRICE
+===============================================================================
+*/
+
+/* Conteneur principal de l'écran */
 .screen {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Espacement entre le display et le result */
-  height: 300px; /* Hauteur fixe pour éviter les problèmes */
-  width: 400px; /* Largeur fixe */
-  min-height: 200px; /* Hauteur minimale */
-  min-width: 300px; /* Largeur minimale */
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  margin-bottom: 10px; /* Espacement avec la keyboard */
-  font-family: "Orbitron", sans-serif;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  /* Dégradé sombre pour simuler un écran LCD */
+  background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+  border-radius: 15px; /* Coins arrondis */
+  padding: 20px; /* Espace interne */
+  margin-bottom: 25px; /* Espace en bas avant le clavier */
+
+  /* Ombres internes pour créer un effet d'écran enfoncé */
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3),
+    /* Ombre interne principale */ inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Bordure interne subtile */
+
+  position: relative; /* Pour le pseudo-élément */
 }
 
+/* Reflet en haut de l'écran pour l'effet réaliste */
+.screen::before {
+  content: ""; /* Contenu vide requis */
+  position: absolute; /* Positionnement absolu */
+  top: 8px; /* Légèrement en dessous du bord */
+  left: 8px; /* Légèrement à droite du bord */
+  right: 8px; /* Légèrement à gauche du bord */
+  height: 1px; /* Ligne fine */
+
+  /* Dégradé horizontal pour simuler un reflet */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+/* Zone d'affichage des calculs */
 .display {
-  display: grid; /* Utilisation de CSS Grid pour répartir les lignes */
-  grid-template-rows: repeat(3, 1fr); /* 3 lignes de hauteur égale */
-  height: 70%; /* Prend 70% de la hauteur du screen */
-  width: 100%; /* Prend toute la largeur disponible */
-  gap: 2px; /* Espacement minimal entre les lignes */
-  background-color: #ffffff;
-  box-sizing: border-box;
-  min-height: 100px; /* Hauteur minimale pour éviter que le display disparaisse */
+  margin-bottom: 15px; /* Espace avant la zone de résultat */
 }
 
+/* Conteneur des lignes d'historique */
+.history-lines {
+  display: flex; /* Flexbox pour organiser les lignes */
+  flex-direction: column; /* Empilement vertical */
+  gap: 8px; /* Espace entre chaque ligne */
+}
+
+/* Style de base pour chaque ligne d'affichage */
 .display-line {
-  width: 100%; /* Chaque ligne prend toute la largeur */
-  height: 100%; /* Chaque ligne prend une part égale de la hauteur */
-  font-size: 1.5rem; /* Taille de police fixe pour éviter les problèmes */
-  text-align: right;
-  padding: 5px;
-  border-radius: 3px;
-  background-color: #f9f9f9;
-  box-sizing: border-box;
+  background: transparent; /* Fond transparent */
+  border: none; /* Pas de bordure */
+  color: #95a5a6; /* Couleur grise pour l'historique */
+  font-family: "JetBrains Mono", monospace; /* Police monospace pour l'alignement */
+  font-size: 1rem; /* Taille de police standard */
+  text-align: right; /* Alignement à droite (style calculatrice) */
+  padding: 8px 12px; /* Espace interne */
+  border-radius: 8px; /* Coins légèrement arrondis */
+  transition: all 0.3s ease; /* Animation fluide */
+  min-height: 36px; /* Hauteur minimale pour la cohérence */
 }
 
+/* Ligne active (expression en cours de saisie) */
+.display-line.active-line {
+  color: #ecf0f1; /* Couleur plus claire pour la ligne active */
+  background: rgba(52, 152, 219, 0.1); /* Fond bleu très transparent */
+  border: 1px solid rgba(52, 152, 219, 0.3); /* Bordure bleue subtile */
+}
+
+/* État de focus pour les lignes d'affichage */
+.display-line:focus {
+  outline: none; /* Supprime l'outline par défaut */
+  background: rgba(52, 152, 219, 0.15); /* Fond bleu légèrement plus visible */
+}
+
+/* Conteneur du résultat final */
+.result-container {
+  display: flex; /* Flexbox pour aligner résultat et icône */
+  align-items: center; /* Alignement vertical centré */
+  justify-content: space-between; /* Espace entre résultat et icône */
+  background: rgba(0, 0, 0, 0.2); /* Fond noir semi-transparent */
+  border-radius: 10px; /* Coins arrondis */
+  padding: 15px; /* Espace interne généreux */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Bordure subtile */
+}
+
+/* Affichage du résultat principal */
 .result {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 30%; /* Prend 30% de la hauteur du screen */
-  font-size: clamp(2rem, 5vw, 3rem); /* Taille de police adaptative */
-  font-weight: bold;
-  background-color: #e8e8e8;
-  padding: 10px;
-  text-align: right;
-  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace; /* Police monospace */
+  font-size: 2.2rem; /* Grande taille pour la lisibilité */
+  font-weight: 600; /* Semi-gras */
+  color: #00ff88; /* Vert fluo caractéristique des calculatrices */
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3); /* Lueur verte */
+  flex: 1; /* Prend tout l'espace disponible */
+  text-align: right; /* Alignement à droite */
+  word-break: break-all; /* Permet la coupure des longs nombres */
 }
 
-h1 {
-  font-size: 2rem;
-  display: block;
-  margin-top: 0;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  text-align: center;
-  position: relative;
-  top: 0px;
+/* Icône d'égalité à côté du résultat */
+.result-indicator {
+  color: #3498db; /* Couleur bleue */
+  font-size: 1.2rem; /* Taille moyenne */
+  margin-left: 15px; /* Espace à gauche */
+  opacity: 0.7; /* Légèrement transparent */
 }
 
-span {
-  font-size: 1.2rem;
-  display: block;
-  margin-top: 0;
-  text-align: center;
-  margin-bottom: 0px;
-}
+/* 
+===============================================================================
+                            6. CLAVIER DE LA CALCULATRICE
+===============================================================================
+*/
 
+/* Conteneur principal du clavier */
 .keyboard {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Conserve 4 colonnes */
-  grid-gap: 15px; /* Augmente l'espacement entre les boutons */
-  padding: 15px; /* Augmente le padding interne */
-  width: 400px; /* Largeur fixe */
-  height: auto; /* Hauteur s'adapte au contenu */
-  margin-bottom: 20px; /* Augmente l'espacement avec le screen */
-  overflow: auto; /* Ajoute des barres de défilement si nécessaire */
+  display: flex; /* Flexbox pour organiser les rangées */
+  flex-direction: column; /* Empilement vertical des rangées */
+  gap: 12px; /* Espace entre chaque rangée */
 }
 
-/* Styles pour les boutons */
-button {
-  padding: 15px; /* Augmente l'espace interne des boutons */
-  font-size: 1.5rem; /* Taille de police fixe */
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  transition: opacity 0.3s ease; /* Ajoute une transition fluide pour l'opacité */
+/* Style pour chaque rangée de boutons */
+.button-row {
+  display: grid; /* CSS Grid pour aligner les boutons */
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes de taille égale */
+  gap: 12px; /* Espace entre les boutons */
 }
 
-/* Effet hover pour tous les boutons */
-button:hover {
-  opacity: 0.6; /* Réduit l'opacité à 0.7 lorsqu'on survole */
+/* Rangée du bas avec disposition spéciale (0 plus large) */
+.bottom-row {
+  grid-template-columns: 2fr 1fr 1fr; /* 0 prend 2 parts, . et = prennent 1 part chacun */
 }
 
-/* Effet actif pour les boutons */
-button:active {
-  background-color: #ce6666;
+/* 
+===============================================================================
+                            7. STYLES DES BOUTONS
+===============================================================================
+*/
+
+/* Style de base pour tous les boutons */
+.btn {
+  height: 60px; /* Hauteur fixe pour tous les boutons */
+  border: none; /* Supprime la bordure par défaut */
+  border-radius: 12px; /* Coins arrondis modernes */
+  font-family: "Inter", sans-serif; /* Police cohérente */
+  font-weight: 600; /* Semi-gras */
+  font-size: 1.1rem; /* Taille de police lisible */
+  cursor: pointer; /* Curseur de pointeur au survol */
+  transition: all 0.2s ease; /* Animation rapide pour les interactions */
+  position: relative; /* Pour les pseudo-éléments */
+  overflow: hidden; /* Cache les débordements des effets */
+
+  /* Flexbox pour centrer le contenu */
+  display: flex;
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal */
+  flex-direction: column; /* Empilement vertical du contenu */
+  gap: 2px; /* Petit espace entre les éléments */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
 
-/* Styles spécifiques pour certains boutons */
-.btnEqual,
-.btnClear,
-.btnDel,
-.btnAns {
-  background-color: #1a155a;
+/* Effet de brillance qui traverse le bouton au survol */
+.btn::before {
+  content: ""; /* Contenu vide requis */
+  position: absolute; /* Positionnement absolu */
+  top: 0; /* Couvre toute la hauteur */
+  left: -100%; /* Commence hors de vue à gauche */
+  width: 100%; /* Largeur complète */
+  height: 100%; /* Hauteur complète */
+
+  /* Dégradé horizontal pour l'effet de brillance */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease; /* Animation du déplacement */
+}
+
+/* Animation de brillance au survol */
+.btn:hover::before {
+  left: 100%; /* Se déplace vers la droite */
+}
+
+/* Effet d'enfoncement au clic */
+.btn:active {
+  transform: translateY(2px); /* Déplacement vers le bas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre réduite */
+}
+
+/* 
+===============================================================================
+                            8. TYPES DE BOUTONS SPÉCIFIQUES
+===============================================================================
+*/
+
+/* Boutons numériques (0-9 et point décimal) */
+.btn-number {
+  /* Dégradé gris clair pour simuler des boutons physiques */
+  background: linear-gradient(145deg, #ecf0f1, #bdc3c7);
+  color: #2c3e50; /* Texte sombre sur fond clair */
+
+  /* Ombres pour l'effet de relief */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    /* Ombre portée */ inset 0 1px 0 rgba(255, 255, 255, 0.5); /* Reflet interne */
+}
+
+/* Effet au survol des boutons numériques */
+.btn-number:hover {
+  background: linear-gradient(
+    145deg,
+    #d5dbdb,
+    #a6acaf
+  ); /* Dégradé plus sombre */
+  transform: translateY(-2px); /* Légère élévation */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+}
+
+/* Boutons d'opérateurs (+, -, ×, ÷) */
+.btn-operator {
+  /* Dégradé orange pour les distinguer */
+  background: linear-gradient(145deg, #e67e22, #d35400);
+  color: white; /* Texte blanc */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Effet au survol des boutons d'opérateurs */
+.btn-operator:hover {
+  background: linear-gradient(145deg, #d35400, #ba4a00); /* Plus sombre */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(211, 84, 0, 0.3); /* Ombre colorée */
+}
+
+/* Boutons de fonctions scientifiques (sin, cos, tan, log, etc.) */
+.btn-function {
+  /* Dégradé violet pour les fonctions avancées */
+  background: linear-gradient(145deg, #9b59b6, #8e44ad);
   color: white;
-  font-weight: bold;
+  font-size: 1rem; /* Légèrement plus petit pour les longs noms */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.btnEqual:active,
-.btnClear:active,
-.btnDel:active,
-.btnAns:active {
-  background-color: #ce6666;
+/* Effet au survol des boutons de fonctions */
+.btn-function:hover {
+  background: linear-gradient(145deg, #8e44ad, #7d3c98);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(142, 68, 173, 0.3);
 }
 
-.btnEqual {
-  grid-column: span 2;
-}
-
-.btnDivide,
-.btnMultiply,
-.btnMinus,
-.btnPlus {
-  background-color: black;
+/* Boutons de contrôle (Clear, Del, Ans) */
+.btn-control {
+  /* Dégradé gris foncé pour les fonctions de contrôle */
+  background: linear-gradient(145deg, #34495e, #2c3e50);
   color: white;
+  font-size: 0.9rem; /* Plus petit pour les labels longs */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.btnDivide:active,
-.btnMultiply:active,
-.btnMinus:active,
-.btnPlus:active {
-  background-color: #ce6666;
+/* Effet au survol des boutons de contrôle */
+.btn-control:hover {
+  background: linear-gradient(145deg, #2c3e50, #1a252f);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(44, 62, 80, 0.3);
 }
 
-.btnLog,
-.btnSin,
-.btnCos,
-.btnTan {
-  background-color: #1a155a;
+/* Bouton égal (=) - le plus important */
+.btn-equals {
+  /* Dégradé vert pour indiquer l'action principale */
+  background: linear-gradient(145deg, #27ae60, #229954);
   color: white;
+  font-size: 1.3rem; /* Plus grand pour l'importance */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive */
+/* Effet au survol du bouton égal */
+.btn-equals:hover {
+  background: linear-gradient(145deg, #229954, #1e8449);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(39, 174, 96, 0.4);
+}
+
+/* Bouton zéro spécial (plus large) */
+.btn-zero {
+  font-size: 1.3rem; /* Plus grand car il prend plus de place */
+}
+
+/* 
+===============================================================================
+                            9. LABELS ET TEXTES DES BOUTONS
+===============================================================================
+*/
+
+/* Texte principal des boutons */
+.main {
+  font-size: 1.1rem; /* Taille standard */
+  font-weight: 600; /* Semi-gras */
+}
+
+/* Labels secondaires des boutons */
+.label {
+  font-size: 0.8rem; /* Plus petit */
+  opacity: 0.9; /* Légèrement transparent */
+  font-weight: 500; /* Poids moyen */
+}
+
+/* 
+===============================================================================
+                            10. PIED DE PAGE
+===============================================================================
+*/
+
+/* Conteneur du pied de page */
+.calculator-footer {
+  display: flex; /* Flexbox pour aligner les éléments */
+  justify-content: space-between; /* Espace entre panneau solaire et info */
+  align-items: center; /* Alignement vertical centré */
+  margin-top: 20px; /* Espace en haut */
+  padding-top: 15px; /* Espace interne en haut */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Ligne de séparation */
+}
+
+/* Panneau solaire décoratif */
+.solar-panel {
+  display: flex; /* Flexbox pour aligner les cellules */
+  gap: 4px; /* Petit espace entre les cellules */
+}
+
+/* Cellules individuelles du panneau solaire */
+.solar-cell {
+  width: 12px; /* Largeur fixe */
+  height: 8px; /* Hauteur fixe */
+  /* Dégradé pour simuler une cellule photovoltaïque */
+  background: linear-gradient(145deg, #34495e, #2c3e50);
+  border-radius: 2px; /* Coins légèrement arrondis */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3); /* Ombre interne */
+}
+
+/* Informations sur le modèle */
+.model-info {
+  font-size: 0.8rem; /* Petite taille */
+  color: #95a5a6; /* Couleur grise */
+  font-weight: 500; /* Poids moyen */
+}
+
+/* 
+===============================================================================
+                            11. DESIGN RESPONSIVE
+===============================================================================
+*/
+
+/* Adaptation pour les écrans moyens (tablettes) */
+@media (max-width: 480px) {
+  .calculator {
+    width: 100%; /* Prend toute la largeur disponible */
+    max-width: 380px; /* Limite la largeur maximale */
+    padding: 20px; /* Réduit l'espace interne */
+  }
+
+  .btn {
+    height: 55px; /* Réduit la hauteur des boutons */
+    font-size: 1rem; /* Réduit la taille de police */
+  }
+
+  .result {
+    font-size: 1.8rem; /* Réduit la taille du résultat */
+  }
+
+  .brand h1 {
+    font-size: 1.5rem; /* Réduit la taille du titre */
+  }
+}
+
+/* Adaptation pour les petits écrans (mobiles) */
+@media (max-width: 360px) {
+  .calculator {
+    padding: 15px; /* Réduit encore l'espace interne */
+  }
+
+  .btn {
+    height: 50px; /* Boutons encore plus petits */
+    font-size: 0.9rem; /* Police encore plus petite */
+  }
+
+  .result {
+    font-size: 1.6rem; /* Résultat plus petit */
+  }
+
+  .keyboard {
+    gap: 8px; /* Réduit l'espace entre les rangées */
+  }
+
+  .button-row {
+    gap: 8px; /* Réduit l'espace entre les boutons */
+  }
+}
+
+/* 
+===============================================================================
+                            12. ANIMATIONS
+===============================================================================
+*/
+
+/* Animation d'apparition de la calculatrice */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Commence invisible */
+    transform: translateY(20px); /* Commence 20px plus bas */
+  }
+  to {
+    opacity: 1; /* Finit visible */
+    transform: translateY(0); /* Finit à sa position normale */
+  }
+}
+
+/* Application de l'animation à la calculatrice */
+.calculator {
+  animation: fadeIn 0.6s ease-out; /* Animation de 0.6 seconde */
+}
+
+/* 
+===============================================================================
+                            13. ACCESSIBILITÉ
+===============================================================================
+*/
+
+/* Classe pour le contenu visible uniquement par les lecteurs d'écran */
+.sr-only {
+  position: absolute; /* Positionnement absolu */
+  width: 1px; /* Largeur minimale */
+  height: 1px; /* Hauteur minimale */
+  padding: 0; /* Pas d'espace interne */
+  margin: -1px; /* Marge négative */
+  overflow: hidden; /* Cache le contenu */
+  clip: rect(0, 0, 0, 0); /* Découpe le contenu */
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  border: 0; /* Pas de bordure */
+}
+
+/* Lien de navigation rapide pour l'accessibilité */
+.skip-link {
+  position: absolute; /* Positionnement absolu */
+  top: -40px; /* Caché au-dessus de l'écran */
+  left: 6px; /* Position à gauche */
+  background: #000; /* Fond noir */
+  color: #fff; /* Texte blanc */
+  padding: 8px; /* Espace interne */
+  text-decoration: none; /* Pas de soulignement */
+  border-radius: 4px; /* Coins arrondis */
+  z-index: 1000; /* Au-dessus de tout */
+  transition: top 0.3s ease; /* Animation de déplacement */
+}
+
+/* Affichage du lien de navigation au focus */
+.skip-link:focus {
+  top: 6px; /* Apparaît en haut de l'écran */
+}
+
+/* Styles pour les éléments output (résultats) */
+output {
+  display: block; /* Affichage en bloc */
+  font-family: inherit; /* Hérite de la police parent */
+  font-size: inherit; /* Hérite de la taille parent */
+  color: inherit; /* Hérite de la couleur parent */
+  background: inherit; /* Hérite du fond parent */
+  border: inherit; /* Hérite de la bordure parent */
+  padding: inherit; /* Hérite de l'espace interne parent */
+  margin: inherit; /* Hérite des marges parent */
+  border-radius: inherit; /* Hérite des coins arrondis parent */
+  transition: inherit; /* Hérite des transitions parent */
+  min-height: inherit; /* Hérite de la hauteur minimale parent */
+  text-align: inherit; /* Hérite de l'alignement parent */
+}
+
+/* Support du mode contraste élevé */
+@media (prefers-contrast: high) {
+  .calculator {
+    border: 2px solid #000; /* Bordure noire épaisse */
+  }
+
+  .btn {
+    border: 1px solid #000; /* Bordure noire sur les boutons */
+  }
+
+  .screen {
+    border: 1px solid #000; /* Bordure noire sur l'écran */
+  }
+}
+
+/* Support de la réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important; /* Animations très courtes */
+    animation-iteration-count: 1 !important; /* Une seule itération */
+    transition-duration: 0.01ms !important; /* Transitions très courtes */
+  }
+
+  .btn::before {
+    display: none; /* Supprime l'effet de brillance */
+  }
+}
+
+/* Focus visible amélioré pour la navigation clavier */
+.btn:focus-visible {
+  outline: 3px solid #3498db; /* Contour bleu épais */
+  outline-offset: 2px; /* Espace entre le bouton et le contour */
+  z-index: 1; /* Au-dessus des autres éléments */
+}
+
+/* Isolation pour une meilleure gestion du focus */
+.calculator {
+  isolation: isolate; /* Crée un nouveau contexte d'empilement */
+}
+
+/* 
+===============================================================================
+                            14. SUPPORT DU MODE SOMBRE
+===============================================================================
+*/
+
+/* Adaptations pour le mode sombre du système */
+@media (prefers-color-scheme: dark) {
+  .calculator {
+    /* Ombres plus prononcées en mode sombre */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .skip-link {
+    background: #fff; /* Fond blanc en mode sombre */
+    color: #000; /* Texte noir en mode sombre */
+  }
+}
+
+/* 
+===============================================================================
+                                FIN DU FICHIER CSS
+===============================================================================
+Total des lignes : ~557
+Sections principales : 14
+Composants stylisés : Calculatrice complète avec accessibilité
+===============================================================================
+*/
