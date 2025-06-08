@@ -1,7 +1,6 @@
 # 🧮 Calculatrice Scientifique Casyoh fx-Collège
 
 [![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/JaySkills/calculator-project)
-[![License](https://img.shields.io/badge/license-Propriétaire-red.svg)](LICENSE)
 
 > **Portfolio - Projet 1** - Calculatrice responsive avec fonctions scientifiques
 
@@ -251,16 +250,12 @@ calculator-project/
 | Safari     | 14+         | ✅ Complet |
 | Edge       | 90+         | ✅ Complet |
 
-## 🤝 Contribution
-
-Ce projet étant un travail de formation personnel, les contributions externes ne sont pas acceptées. Vous pouvez cependant forker le projet pour vos propres expérimentations.
 
 ## 👨‍🎓 Contexte de Formation
 
 ### Formation
 
-**OpenClassrooms x IBM**  
-JavaScript Fullstack Developer Certificate  
+**Fullstack Javascript Developer - MERN/Next**  
 Année : 2025
 
 ### Compétences Développées
@@ -272,7 +267,7 @@ Année : 2025
 
 ## 📄 Licence
 
-Ce projet est sous licence propriétaire.
+Ce projet est sous licence MIT.
 
 ---
 
@@ -290,6 +285,5 @@ Ce projet est sous licence propriétaire.
 **Calculatrice Scientifique Casyoh fx-Collège v2.0**  
 _Développé par JaySkills_
 
-[![GitHub](https://img.shields.io/badge/GitHub-JaySkills-black?logo=github)](https://github.com/JaySkills/calculator-project)
 
 </div>
