@@ -1,6 +1,5 @@
 # 🧮 Calculatrice Scientifique Casyoh fx-Collège
 
-[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/JaySkills/calculator-project)
 
 > **Portfolio - Projet 1** - Calculatrice responsive avec fonctions scientifiques
 
