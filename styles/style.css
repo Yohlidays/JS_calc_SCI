@@ -1,0 +1,183 @@
+/* Global Styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%; /* Assure que le body prend toute la hauteur */
+  width: 100%; /* Assure que le body prend toute la largeur */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto; /* Ajoute des barres de défilement si nécessaire */
+}
+
+input {
+  all: unset; /* Réinitialise tous les styles par défaut */
+  box-sizing: border-box; /* Assure une gestion correcte des dimensions */
+}
+
+/* Layout */
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  width: 100vw; /* Prend toute la largeur de la fenêtre */
+  min-width: 320px; /* Largeur minimale pour éviter les problèmes */
+  min-height: 480px; /* Hauteur minimale pour éviter les problèmes */
+  background-color: #789cca;
+  box-sizing: border-box;
+  padding: 10px; /* Ajoute un peu d'espace autour du contenu */
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacement entre le display et le result */
+  height: 300px; /* Hauteur fixe pour éviter les problèmes */
+  width: 400px; /* Largeur fixe */
+  min-height: 200px; /* Hauteur minimale */
+  min-width: 300px; /* Largeur minimale */
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Espacement avec la keyboard */
+  font-family: "Orbitron", sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.display {
+  display: grid; /* Utilisation de CSS Grid pour répartir les lignes */
+  grid-template-rows: repeat(3, 1fr); /* 3 lignes de hauteur égale */
+  height: 70%; /* Prend 70% de la hauteur du screen */
+  width: 100%; /* Prend toute la largeur disponible */
+  gap: 2px; /* Espacement minimal entre les lignes */
+  background-color: #ffffff;
+  box-sizing: border-box;
+  min-height: 100px; /* Hauteur minimale pour éviter que le display disparaisse */
+}
+
+.display-line {
+  width: 100%; /* Chaque ligne prend toute la largeur */
+  height: 100%; /* Chaque ligne prend une part égale de la hauteur */
+  font-size: 1.5rem; /* Taille de police fixe pour éviter les problèmes */
+  text-align: right;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.result {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 30%; /* Prend 30% de la hauteur du screen */
+  font-size: clamp(2rem, 5vw, 3rem); /* Taille de police adaptative */
+  font-weight: bold;
+  background-color: #e8e8e8;
+  padding: 10px;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2rem;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+  top: 0px;
+}
+
+span {
+  font-size: 1.2rem;
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Conserve 4 colonnes */
+  grid-gap: 15px; /* Augmente l'espacement entre les boutons */
+  padding: 15px; /* Augmente le padding interne */
+  width: 400px; /* Largeur fixe */
+  height: auto; /* Hauteur s'adapte au contenu */
+  margin-bottom: 20px; /* Augmente l'espacement avec le screen */
+  overflow: auto; /* Ajoute des barres de défilement si nécessaire */
+}
+
+/* Styles pour les boutons */
+button {
+  padding: 15px; /* Augmente l'espace interne des boutons */
+  font-size: 1.5rem; /* Taille de police fixe */
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transition: opacity 0.3s ease; /* Ajoute une transition fluide pour l'opacité */
+}
+
+/* Effet hover pour tous les boutons */
+button:hover {
+  opacity: 0.6; /* Réduit l'opacité à 0.7 lorsqu'on survole */
+}
+
+/* Effet actif pour les boutons */
+button:active {
+  background-color: #ce6666;
+}
+
+/* Styles spécifiques pour certains boutons */
+.btnEqual,
+.btnClear,
+.btnDel,
+.btnAns {
+  background-color: #1a155a;
+  color: white;
+  font-weight: bold;
+}
+
+.btnEqual:active,
+.btnClear:active,
+.btnDel:active,
+.btnAns:active {
+  background-color: #ce6666;
+}
+
+.btnEqual {
+  grid-column: span 2;
+}
+
+.btnDivide,
+.btnMultiply,
+.btnMinus,
+.btnPlus {
+  background-color: black;
+  color: white;
+}
+
+.btnDivide:active,
+.btnMultiply:active,
+.btnMinus:active,
+.btnPlus:active {
+  background-color: #ce6666;
+}
+
+.btnLog,
+.btnSin,
+.btnCos,
+.btnTan {
+  background-color: #1a155a;
+  color: white;
+}
+
+/* Responsive */
